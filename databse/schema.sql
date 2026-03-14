@@ -27,24 +27,19 @@ SET time_zone = "+00:00";
 -- Estrutura para tabela `tarefas`
 --
 
-CREATE TABLE `tarefas` (
+CREATE TABLE IF NOT EXISTS `tarefas` (
   `id` int(11) NOT NULL,
   `titulo` varchar(100) NOT NULL,
   `descricao` text DEFAULT NULL,
-  `situacao` enum('nao_feito','feito') NOT NULL DEFAULT 'nao_feito'
+  `situacao` enum('nao_feito','feito') NOT NULL DEFAULT 'nao_feito',
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `tarefas`
 --
 
-INSERT INTO `tarefas` (`id`, `titulo`, `descricao`, `situacao`) VALUES
-(1, 'tarefa 01', 'Olá, Mundo!', 'feito'),
-(2, 'tarefa 02', 'Hello World!', 'feito'),
-(3, 'tarefa 03', 'vamo aeeeee', 'feito'),
-(4, 'tarefa 04', 'boraaaaaaaiii', 'feito'),
-(6, 'tarefa 05', 'Editadooooo', 'feito');
-
+ TRUNCATE TABLE tarefas;
 --
 -- Índices para tabelas despejadas
 --
@@ -52,8 +47,6 @@ INSERT INTO `tarefas` (`id`, `titulo`, `descricao`, `situacao`) VALUES
 --
 -- Índices de tabela `tarefas`
 --
-ALTER TABLE `tarefas`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas

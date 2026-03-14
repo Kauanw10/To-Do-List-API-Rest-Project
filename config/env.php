@@ -1,9 +1,10 @@
 <?php
-    define('DB_HOST', 'localhost');
-    define('DB_NAME', 'tarefas_list_api');
-    define('DB_USER', 'root');
+    define('DB_HOST', 'mysql-1303todolist-kauanw10-db1.f.aivencloud.com');
+    define('DB_NAME', 'defaultdb');
+    define('DB_USER', 'avnadmin');
     define('DB_PASS', '');
-    define('ENV', 'dev');
+    define('DB_PORT', '10745');
+    define('ENV', 'prod');
 
     if (ENV === 'dev') {
         ini_set('display_errors', 1);
