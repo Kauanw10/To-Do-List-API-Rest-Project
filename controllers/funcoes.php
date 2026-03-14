@@ -1,5 +1,5 @@
 <?php 
-    require_once "/var/www/html/core/conexao.php";
+    require_once __DIR__ . "/../core/conexao.php";
 
 function statusTarefa($stmt, $status, $titulo, $codigoHttp){
     try {

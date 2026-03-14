@@ -1,6 +1,6 @@
 <?php 
-    require_once "/var/www/html/services/TarefaService.php";
-    require_once "/var/www/html/core/helpers.php";
+    require_once __DIR__ . "/../../services/TarefaService.php";
+    require_once __DIR__ . "/../../core/helpers.php"; 
    
     $dados = getJson();
     $resultadoCriar = TarefaService::criar($dados);
