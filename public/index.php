@@ -51,6 +51,6 @@
         </form>
     </dialog>
 
-    <script src="../controllers/script.js"></script>
+    <script src="/../controllers/script.js"></script>
 </body>
 </html>

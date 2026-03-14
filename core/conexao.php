@@ -1,6 +1,6 @@
 <?php 
-    require_once "../controllers/funcoes.php";
-    require_once "../config/env.php";
+    require_once __DIR__ . "/../controllers/funcoes.php";
+    require_once __DIR__ . "/../config/env.php";
 
     try {
         $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
