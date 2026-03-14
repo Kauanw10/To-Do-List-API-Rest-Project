@@ -5,6 +5,8 @@ let msgErro
 let urlAtual 
 let metodoAtual 
 
+console.log("Script carregado com sucesso.")
+
 document.addEventListener('DOMContentLoaded', function() {
     buscarDados()
     limparAlertas()
@@ -12,7 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 forms.addEventListener('submit', async (e) => {
     e.preventDefault()
-    
+    console.log("Botão Clicado, impedindo Recarregamento e processando formulário...")
+
     const formDados = new FormData(e.target)
     const objetoDados = Object.fromEntries(formDados)
 
