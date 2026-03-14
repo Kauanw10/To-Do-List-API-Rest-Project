@@ -23,7 +23,7 @@ forms.addEventListener('submit', async (e) => {
 async function criarTarefa(dados) {
     limparAlertas()
 
-    urlAtual = 'http://localhost/devWeb-estudos/to-doList_APIRest_project/api/criar.php'
+    urlAtual = '/api/criar.php'
     metodoAtual = 'POST'
     msgErro = "Erro ao criar tarefa."
 
@@ -41,7 +41,7 @@ async function criarTarefa(dados) {
 }
 
 async function buscarDados() {
-    urlAtual = 'http://localhost/devWeb-estudos/to-doList_APIRest_project/api/listar.php'
+    urlAtual = '/api/listar.php'
     msgErro = "Falha ao carregar a lista de tarefas."
 
     const tarefas = await fetchApi(urlAtual, 'GET', null, msgErro)
@@ -117,7 +117,7 @@ function atualizarTarefa() {
     modalForms.querySelector('textarea#descModal').value = descSessao
     modalForms.querySelector(`input[name="statusModal"][value="${sttsSessao}"]`).checked = true
     
-    urlAtual = 'http://localhost/devWeb-estudos/to-doList_APIRest_project/api/atualizar.php'
+    urlAtual = 'api/atualizar.php'
     metodoAtual = 'PUT'
     msgErro = "Erro ao editar tarefa."
     
@@ -148,7 +148,7 @@ document.getElementById('modalForms').addEventListener('submit', async function(
 async function excluirTarefa(id) {
     if (!confirm('Tem certeza que deseja excluir?')) return
 
-    urlAtual = 'http://localhost/devWeb-estudos/to-doList_APIRest_project/api/excluir.php'
+    urlAtual = '/api/excluir.php'
     metodoAtual = 'DELETE'
     msgErro = 'Erro ao excluir tarefa.'
 

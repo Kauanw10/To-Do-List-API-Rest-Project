@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Lista de Tarefas</h1>
-    <form id="forms" action="../api/criar.php" method="post">
+    <form id="forms" action="/api/criar.php" method="post">
         <input type="hidden" name="id" id="id_Tarefa">
         <label for="titulo">Titulo:</label>
         <input type="text" name="titulo" id="titulo" placeholder="Dê um titulo aqui...">
