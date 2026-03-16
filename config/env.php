@@ -1,5 +1,4 @@
 <?php
-
     define('DB_HOST', getenv('DB_HOST') ?: 'mysql-1303todolist-kauanw10-db1.f.aivencloud.com');
     define('DB_NAME', getenv('DB_NAME') ?: 'defaultdb');
     define('DB_USER', getenv('DB_USER') ?: 'avnadmin');
