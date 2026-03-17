@@ -1,6 +1,7 @@
 <?php 
     require_once __DIR__ .  "/../core/validador.php";
     require_once __DIR__ .  "/../controllers/funcoes.php";
+    require_once __DIR__ .  "/../core/conexao.php";
 
     class TarefaService{
         public static function criar($dados){
