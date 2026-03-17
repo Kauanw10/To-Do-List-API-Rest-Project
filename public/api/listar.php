@@ -12,7 +12,7 @@ try {
     }
 
     $result = TarefaService::listar();
-    echo json_encode($result);
+    echo json_encode($result ? $result : []);
 
 } catch (Throwable $e) {
     echo json_encode([
