@@ -39,7 +39,12 @@ function responder($sucesso, $status, $titulo, $codigoHttp){
 }
 
 function registrarErro($e) {
+    $caminhoPastaLogs = __DIR__ . '/../logs'; 
     $arquivoLog = __DIR__ . '/../logs/erros.log';
+
+    if (!is_dir($caminhoPasta)) {
+        mkdir($caminhoPasta, 0777, true);
+    }
 
     $mensagem = "[" . date('Y-m-d H:i:s') . "]" . PHP_EOL;
     $mensagem .= "Mensagem: " . $e->getMessage() . PHP_EOL;
@@ -47,6 +52,8 @@ function registrarErro($e) {
     $mensagem .= "Linha: " . $e->getLine() . PHP_EOL;
     $mensagem .= "---------------------------------------" . PHP_EOL;
   
-    error_log($mensagem, 3, $arquivoLog);
+    if (!error_log($mensagem, 3, $arquivoLog)) {
+        error_log("Erro no PHP: " . $e->getMessage()); 
+    }
 }
 ?>

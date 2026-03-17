@@ -1,13 +1,12 @@
 <?php 
-    require_once "/var/www/html/controllers/funcoes.php";
-    require_once "/var/www/html/config/env.php";
+    require_once __DIR__ . "/../config/env.php";
 
     try {
-        $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4";
+        $pdo = new PDO($dsn, DB_USER, DB_PASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);      
 
     }catch (\PDOException $e) {
-        registrarErro($e);
-        exit;
+        die("Falha na conexão: " . $e->getMessage());
     }
 ?>
