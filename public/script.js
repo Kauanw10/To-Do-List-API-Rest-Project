@@ -208,17 +208,11 @@ async function fetchApi(url, metodo = 'GET', corpo = null, msgErro) {
 }
 
 function showError(objResposta) {
+    limparAlertas()
+
     console.error("Erro detectado:", objResposta.erroTecnico || objResposta.status)
    
     p.innerText = `${objResposta.status || 'Erro'}: ${objResposta.titulo || 'Falha na operação'}`
-
-    document.querySelectorAll('input, textarea').forEach(campos =>{
-       campos.style.borderColor = ''
-    })
-    
-    document.querySelectorAll('span.erro_msg').forEach(span =>{
-        span.textContent = ''
-    })
 
     if (objResposta.erros) {
         let primeiroCampoComErro = null
@@ -226,8 +220,8 @@ function showError(objResposta) {
         Object.keys(objResposta.erros).forEach(campo =>{
             
             const mensagem = objResposta.erros[campo]
-            const input = document.querySelector(`[name="${campo}"]`)
-            const span = document.querySelector(`[name="span${campo}"]`)
+            const input = document.querySelector(`#forms [name="${campo}"], #modalForms [name="${campo}Modal"]`)
+            const span = document.getElementById(`erro-${campo}`)
 
             console.log(`O campo ${campo} está com o erro: ${mensagem}`)
 
@@ -241,6 +235,7 @@ function showError(objResposta) {
                 span.style.color = 'red'
             }
         })
+        
         if (primeiroCampoComErro) primeiroCampoComErro.focus()
     }
 }

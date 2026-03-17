@@ -12,12 +12,12 @@
         <input type="hidden" name="id" id="id_Tarefa">
         <label for="titulo">Titulo:</label>
         <input type="text" name="titulo" id="titulo" placeholder="Dê um titulo aqui...">
-        <span name="spantitulo" class="erro_msg"></span>
+        <span id="erro-titulo" class="erro_msg"></span>
         <br><br>
         <label for="desc">Descrição:</label>
         <br>
         <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Descreva a tarefa aqui..."></textarea><br>
-        <span name="spandesc" class="erro_msg"></span>
+        <span id="erro-desc" class="erro_msg"></span>
         <br>
         <input type="radio" name="status" value="nao_feito" checked>Não Feito
         <br>
@@ -38,10 +38,12 @@
             <input type="hidden" name="id_Tarefa" id="id_Tarefa">
             <label for="tituloModal">Titulo:</label>
             <input type="text" name="tituloModal" id="tituloModal">
+            <span id="erro-tituloModal" class="erro_msg"></span>
             <br><br>
             <label for="descModal">Descrição:</label>
             <br>
             <textarea name="descModal" id="descModal" cols="30" rows="10" placeholder="Descreva a tarefa aqui..."></textarea>
+            <span id="erro-descModal" class="erro_msg"></span>
             <br>
             <input type="radio" name="statusModal" value="nao_feito">Não Feito
             <br>

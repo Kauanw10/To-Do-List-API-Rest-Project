@@ -1,5 +1,5 @@
 <?php 
-    require_once __DIR__ . "/../../core/conexao.php";
+    // require_once __DIR__ . "/../../core/conexao.php";
     require_once __DIR__ . "/../../services/TarefaService.php";
     require_once __DIR__ . "/../../core/helpers.php"; 
 
