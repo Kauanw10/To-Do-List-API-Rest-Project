@@ -220,7 +220,9 @@ function showError(objResposta) {
         Object.keys(objResposta.erros).forEach(campo =>{
             
             const mensagem = objResposta.erros[campo]
-            const input = document.querySelector(`#forms [name="${campo}"], #modalForms [name="${campo}Modal"]`)
+
+            const input = document.querySelector(`#forms [name="${campo}"], #modalForms [name="${campo}"], #modalForms [name="${campo}Modal"]`)
+
             const span = document.getElementById(`erro-${campo}`)
 
             console.log(`O campo ${campo} está com o erro: ${mensagem}`)
