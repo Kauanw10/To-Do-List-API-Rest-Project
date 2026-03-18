@@ -38,7 +38,6 @@ async function criarTarefa(dados) {
             buscarDados()
             forms.reset()
         }else{
-            console.error("Falha na operação:", dadosCriar.erroTecnico)
             showError(dadosCriar)
         }
 }
