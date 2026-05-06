@@ -141,7 +141,6 @@ document.getElementById('modalForms').addEventListener('submit', async function(
         sessionStorage.clear()
         document.querySelector('dialog').close()
     } else{
-        console.error("Falha na operação:", dadosEditar.erroTecnico)
         showError(dadosEditar)
     }
     
@@ -160,10 +159,8 @@ async function excluirTarefa(id) {
 
     if (dadosExcluir.sucesso) {
         buscarDados()
-    }else{
-        console.error("Falha na operação:", dadosExcluir.erroTecnico)
+    }else{ 
         showError(dadosExcluir)
-
     }
    
     sessionStorage.clear()
