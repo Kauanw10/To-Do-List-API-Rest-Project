@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/../../config/env.php';
 require_once __DIR__ . '/../../services/TarefaService.php';
-require_once __DIR__ . '/../../controllers/funcoes.php';
+// require_once __DIR__ . '/../../controllers/funcoes.php';
 
 $json = file_get_contents('php://input');
 $dados = json_decode($json, true);

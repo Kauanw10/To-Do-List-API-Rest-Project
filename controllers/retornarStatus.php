@@ -4,21 +4,21 @@
 function statusTarefa($stmt, $status, $titulo, $codigoHttp){
     try {
     if ($stmt->execute()) {
-        responder(true, $status, $titulo, $codigoHttp);
+       return responder(true, $status, $titulo, $codigoHttp);
     }
     } catch (Exception $e) {
     if (ENV === "dev") {
         $status = "Erro";
         $titulo = $e->getMessage() . " Arquivo: " . $e->getFile() . " Linha: " . $e->getLine();
 
-        responder(false, $status, $titulo, 500);
+        return responder(false, $status, $titulo, 500);
 
     } else {
         registrarErro($e);
 
         $status = "Erro";
         $titulo = "Tente novamente mais tarde.";
-        responder(false, $status, $titulo, 500);
+        return responder(false, $status, $titulo, 500);
     }
     }
 }
@@ -34,8 +34,7 @@ function responder($sucesso, $status, $titulo, $codigoHttp){
         "titulo" => $titulo
     ];
 
-    echo json_encode($resposta);
-    exit;
+    return $resposta;
 }
 
 function registrarErro($e) {

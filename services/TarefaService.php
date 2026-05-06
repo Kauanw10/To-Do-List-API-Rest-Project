@@ -1,12 +1,12 @@
 <?php 
     require_once __DIR__ .  "/../core/validador.php";
-    require_once __DIR__ .  "/../controllers/funcoes.php";
+    require_once __DIR__ .  "/../controllers/preparaQuery.php";
     require_once __DIR__ .  "/../core/conexao.php";
 
     class TarefaService{
         public static function criar($dados){
-            global $pdo;
             $verif = new Validador();
+            $tipoFuncao = "Criar";
 
             if (empty($dados['titulo'])) {
                 $verif->adicionarErro('titulo', 'O título não pode estar vázio!');
@@ -20,33 +20,18 @@
                 return $verif->retornarErros();
             }
 
-            $stmt = $pdo->prepare('INSERT INTO tarefas (titulo, descricao, situacao) VALUES (:titulo, :descricao, :situacao)');
-            $stmt->bindValue('titulo', $dados['titulo'], PDO::PARAM_STR);
-            $stmt->bindValue('descricao', $dados['desc'], PDO::PARAM_STR);
-            $stmt->bindValue('situacao', $dados['status'], PDO::PARAM_STR);
+            $queryCriar = preparaQuery($tipoFuncao, $dados);
 
-            $statusPOST = "Sucesso";
-            $tituloPOST = "Tarefa Criada.";
-        
-            $retornoCriar = statusTarefa($stmt, $statusPOST, $tituloPOST, 201);
-
-            return $retornoCriar;
+            return $queryCriar;
         }
 
         public static function listar(){
-            global $pdo;
+            
+            $tipoFuncao = "Listar";
            
             try {
-                if (!$pdo) {
-                throw new \Exception("Conexão com o banco de dados não encontrada.");
-                }
-
-                $stmt = $pdo->prepare("SELECT * FROM tarefas ORDER BY id ASC");
-                $stmt->execute();
-                
-                $lista = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-                return $lista ?: [];
+                $queryListar = preparaQuery($tipoFuncao, null);
+                return $queryListar;
 
             } catch (\PDOException $e) {
                 return [
@@ -66,8 +51,8 @@
         }
 
         public static function atualizar($dados){
-            global $pdo;
             $verif = new Validador();
+            $tipoFuncao = "Atualizar";
 
             if (empty($dados['tituloModal'])) {
                 $verif->adicionarErro('tituloModal', 'O título não pode estar vazio!');
@@ -82,18 +67,9 @@
             }
 
             try {
-                $stmt = $pdo->prepare('UPDATE `tarefas` SET `titulo` = :titulo, `descricao` = :descricao, `situacao` = :situacao  WHERE `id` = :id');
+                $queryAtualizar = preparaQuery($tipoFuncao, $dados);
+                return $queryAtualizar;
 
-                $stmt->bindValue('id', $dados['id_Tarefa'], PDO::PARAM_INT);
-                $stmt->bindValue('titulo', $dados['tituloModal'], PDO::PARAM_STR);
-                $stmt->bindValue('descricao', $dados['descModal'], PDO::PARAM_STR);
-                $stmt->bindValue('situacao', $dados['statusModal'], PDO::PARAM_STR);
-
-
-                $statusPUT = "Sucesso";
-                $tituloPUT = "Tarefa Atualizada.";
-
-                return statusTarefa($stmt, $statusPUT, $tituloPUT, 200);
             } catch (\PDOException $e) {
                 return [
                     "sucesso" => false,
@@ -105,16 +81,10 @@
         }
 
         public static function excluir($id){
-            global $pdo;
-                $stmt = $pdo->prepare('DELETE FROM `tarefas` WHERE id = :id');
-                $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-    
-                $statusDEL = "Sucesso";
-                $tituloDEL = "Tarefa Excluida.";
-            
-                $retornoExcluir = statusTarefa($stmt, $statusDEL, $tituloDEL, 200);
+            $tipoFuncao = "Excluir";
+            $queryExcluir = preparaQuery($tipoFuncao, $id);
 
-                return $retornoExcluir;
+            return $queryExcluir;
         }
     }
 ?>
