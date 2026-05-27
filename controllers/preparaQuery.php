@@ -6,6 +6,20 @@
     function preparaQuery($tipoFuncao, $dados){
         switch ($tipoFuncao){
             
+            case 'Registrar':
+                global $pdo;
+                $stmt = $pdo->prepare("INSERT INTO users (nome, email, senha) VALUES (:nome, :email, :senha)");
+                $stmt->bindValue('nome', $dados['nome'], PDO::PARAM_STR);
+                $stmt->bindValue('email', $dados['email'], PDO::PARAM_STR);
+                $stmt->bindValue('senha', $dados['senha'], PDO::PARAM_STR);
+
+                $statusRegistrar = "Sucesso";
+                $tituloRegistrar = "Registro Criado.";
+
+                return statusTarefa($stmt, $statusRegistrar, $tituloRegistrar, 201);
+
+            break;
+
             case 'Criar':
                 global $pdo;
                 $stmt = $pdo->prepare('INSERT INTO tarefas (titulo, descricao, situacao) VALUES (:titulo, :descricao, :situacao)');

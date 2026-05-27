@@ -1,0 +1,3 @@
+<?php 
+    // Token JWT
+?>

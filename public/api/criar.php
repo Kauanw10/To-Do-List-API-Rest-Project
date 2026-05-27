@@ -5,7 +5,6 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/../../config/env.php';
 require_once __DIR__ . '/../../services/TarefaService.php';
-// require_once __DIR__ . '/../../controllers/funcoes.php';
 
 $json = file_get_contents('php://input');
 $dados = json_decode($json, true);
@@ -17,8 +16,7 @@ if ($dados) {
 header('Content-Type: application/json');
 
 try {
-    $service = new TarefaService();
-    $resultado = $service->criar($_POST); 
+    $resultado = TarefaService::criar($_POST); 
     
     echo json_encode($resultado);
 } catch (Exception $e) {
