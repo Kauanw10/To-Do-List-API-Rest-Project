@@ -3,7 +3,7 @@
 
 function statusTarefa($stmt, $status, $titulo, $codigoHttp){
     try {
-    if ($stmt->execute()) {
+    if ($stmt === true) {
        return responder(true, $status, $titulo, $codigoHttp);
     }
     } catch (Exception $e) {

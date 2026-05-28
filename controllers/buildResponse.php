@@ -1,23 +1,25 @@
 <?php 
     require_once __DIR__ .  "/../core/conexao.php";
-    require_once __DIR__ .  "/retornarStatus.php";
+    require_once __DIR__ .  "/httpResponse.php";
 
 
-    function preparaQuery($tipoFuncao, $dados){
+    function formatResponse($tipoFuncao, $dados){
         switch ($tipoFuncao){
             
             case 'Registrar':
-                global $pdo;
-                $stmt = $pdo->prepare("INSERT INTO users (nome, email, senha) VALUES (:nome, :email, :senha)");
-                $stmt->bindValue('nome', $dados['nome'], PDO::PARAM_STR);
-                $stmt->bindValue('email', $dados['email'], PDO::PARAM_STR);
-                $stmt->bindValue('senha', $dados['senha'], PDO::PARAM_STR);
-
+                
+                if ($dados === false) {
+                    $statusRegistrar = "Erro";
+                    $tituloRegistrar = "Não foi possivel criar o Cadastro.";
+                    
+                    return statusTarefa(false, $statusRegistrar, $tituloRegistrar, 400);
+                }
+                
                 $statusRegistrar = "Sucesso";
                 $tituloRegistrar = "Registro Criado.";
-
-                return statusTarefa($stmt, $statusRegistrar, $tituloRegistrar, 201);
-
+                
+                return statusTarefa(true, $statusRegistrar, $tituloRegistrar, 201);
+                    
             break;
 
             case 'Criar':

@@ -1,6 +1,6 @@
 <?php 
     require_once __DIR__ .  "/../core/validador.php";
-    require_once __DIR__ .  "/../controllers/preparaQuery.php";
+    require_once __DIR__ .  "/../controllers/buildResponse.php";
     require_once __DIR__ .  "/../core/conexao.php";
 
     class TarefaService{
@@ -20,9 +20,9 @@
                 return $verif->retornarErros();
             }
 
-            $queryCriar = preparaQuery($tipoFuncao, $dados);
+            $respostaCriar = formatResponse($tipoFuncao, $dados);
 
-            return $queryCriar;
+            return $respostaCriar;
         }
 
         public static function listar(){
@@ -30,8 +30,8 @@
             $tipoFuncao = "Listar";
            
             try {
-                $queryListar = preparaQuery($tipoFuncao, null);
-                return $queryListar;
+                $respostaListar = formatResponse($tipoFuncao, null);
+                return $respostaListar;
 
             } catch (\PDOException $e) {
                 return [
@@ -67,8 +67,8 @@
             }
 
             try {
-                $queryAtualizar = preparaQuery($tipoFuncao, $dados);
-                return $queryAtualizar;
+                $respostaAtualizar = formatResponse($tipoFuncao, $dados);
+                return $respostaAtualizar;
 
             } catch (\PDOException $e) {
                 return [
@@ -82,9 +82,9 @@
 
         public static function excluir($id){
             $tipoFuncao = "Excluir";
-            $queryExcluir = preparaQuery($tipoFuncao, $id);
+            $respostaExcluir = formatResponse($tipoFuncao, $id);
 
-            return $queryExcluir;
+            return $respostaExcluir;
         }
     }
 ?>
