@@ -22,6 +22,21 @@
                     
             break;
 
+            case 'Login':
+                if ($dados === false) {
+                    $statusLogin = "Erro";
+                    $tituloLogin = "Não foi possivel Logar.";
+                    
+                    return statusTarefa(false, $statusLogin, $tituloLogin, 401);
+                }
+
+                $statusLogin = "Sucesso";
+                $tituloLogin = "Login Realizado.";
+                
+                return statusTarefa(true, $statusLogin, $tituloLogin, 201, $dados);
+
+            break;
+
             case 'Criar':
                 global $pdo;
                 $stmt = $pdo->prepare('INSERT INTO tarefas (titulo, descricao, situacao) VALUES (:titulo, :descricao, :situacao)');

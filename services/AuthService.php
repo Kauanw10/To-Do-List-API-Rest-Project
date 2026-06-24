@@ -94,15 +94,13 @@
                 return $verif->retornarErros();
             }
 
-           return [
-                "sucesso" => true,
-                "status" => "Sucesso",
-                "titulo" => "Login realizado.",
-                "usuario" => [
-                    "id" => $usuario['id'],
-                    "nome" => $usuario['nome']
-                ]   // Fazer Alteração...
-            ];
+          if ($usuario === false) {
+                $resultado = formatResponse($tipoFuncao, false);
+            }else {
+                $resultado = formatResponse($tipoFuncao, $usuario);
+            }
+
+            return $resultado;
 
         }
 
