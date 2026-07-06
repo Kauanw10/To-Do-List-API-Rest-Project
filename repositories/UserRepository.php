@@ -5,7 +5,7 @@
         public static function criarUser($dados){
             global $pdo;
 
-            $stmt = $pdo->prepare("INSERT INTO users (nome, email, senha) VALUES (:nome, :email, :senha)");
+            $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)");
             $stmt->bindValue(':nome', $dados['nome'], PDO::PARAM_STR);
             $stmt->bindValue(':email', $dados['email'], PDO::PARAM_STR);
             $stmt->bindValue(':senha', $dados['senha'], PDO::PARAM_STR);
@@ -20,7 +20,7 @@
         public static function buscarPorEmail($email){
             global $pdo;
 
-            $stmt = $pdo->prepare("SELECT id, nome, senha FROM users WHERE `email` = :email");
+            $stmt = $pdo->prepare("SELECT id, nome, senha FROM usuarios WHERE `email` = :email");
             $stmt->bindValue(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
 
