@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 
 try {
     require_once __DIR__ . "/../../core/conexao.php";  
-    require_once __DIR__ . "/../../core/httpResponse.php";    
+    require_once __DIR__ . "/../../controllers/httpResponse.php";    
     require_once __DIR__ . "/../../repositories/TarefaRepository.php";
     require_once __DIR__ . "/../../services/TarefaService.php";
 
