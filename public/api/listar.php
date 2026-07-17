@@ -2,6 +2,7 @@
 header('Content-Type: application/json');
 
 try {
+    require_once __DIR__ . "/../../middleware/auth.php";  
     require_once __DIR__ . "/../../core/conexao.php";  
     require_once __DIR__ . "/../../controllers/httpResponse.php";    
     require_once __DIR__ . "/../../repositories/TarefaRepository.php";
@@ -12,11 +13,10 @@ try {
         exit;
     }
 
-    $id_Usuario = 1;
     $tarefaRepository = new TarefaRepository($pdo);
     $tarefaService = new TarefaService($tarefaRepository);
 
-    $result = $tarefaService->listar($id_Usuario);
+    $result = $tarefaService->listar($usuarioLogado->user_id);
     echo json_encode($result);
 
 } catch (Throwable $e) {

@@ -2,6 +2,7 @@
 
     // Autenticador
     require_once __DIR__ .  "/../core/validador.php";
+    require_once __DIR__ .  "/../core/jwt.php";
     require_once __DIR__ .  "/../controllers/buildResponse.php";
     require_once __DIR__ .  "/../repositories/UserRepository.php";
 
@@ -94,13 +95,15 @@
                 return $verif->retornarErros();
             }
 
-          if ($usuario === false) {
-                $resultado = formatResponse($tipoFuncao, false);
-            }else {
-                $resultado = formatResponse($tipoFuncao, $usuario);
-            }
+            $payload = [
+                'user_id' => $usuario['id'],
+                'nome' => $usuario['nome'],
+                'exp' => time() + 3600 // Expira em 1 hora
+            ];
 
-            return $resultado;
+            $token = JWT::gerar($payload);
+
+            return formatResponse($tipoFuncao, ['token' => $token]);
 
         }
 
