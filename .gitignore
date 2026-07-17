@@ -1,2 +1,3 @@
 ca.pem
 config/env.php
+public/debug.php
