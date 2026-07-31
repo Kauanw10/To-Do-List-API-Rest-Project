@@ -4,7 +4,7 @@
     define('DB_USER', getenv('DB_USER') ?: 'avnadmin');
     define('DB_PASS', getenv('DB_PASS') ?: '');
     define('DB_PORT', getenv('DB_PORT') ?: '10745');
-    define('SECRET_KEY', getenv('SECRET_KEY') ?: '6831ac6d93b786bee6008674a71e883300e9675d24b4ddd760de14950bbb807f');
+    
     
     define('ENV', getenv('RENDER') ? 'prod' : 'dev');
 
