@@ -1,6 +1,7 @@
 <?php 
     header('Content-Type: application/json');
-    
+    ini_set('display_errors', 0);
+    error_reporting(E_ALL);
     try {
         require_once __DIR__ . "/../../middleware/auth.php";  
         require_once __DIR__ . "/../../core/conexao.php";  

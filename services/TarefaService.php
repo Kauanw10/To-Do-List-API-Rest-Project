@@ -45,12 +45,12 @@ class TarefaService {
         $verif = new Validador();
         $tipoFuncao = "Atualizar";
 
-        if (empty($dados['tituloModal'])) {
+        if (empty($dados['titulo'])) {
             $verif->adicionarErro('tituloModal', 'O título não pode estar vazio!');
         }
 
-        if (strlen($dados['descModal']) < 5) {
-            $verif->adicionarErro('descModal', 'A descrição deve ter pelo menos 5 caracteres!');
+        if (strlen($dados['descricao']) < 5) {
+            $verif->adicionarErro('descricao', 'A descrição deve ter pelo menos 5 caracteres!');
         }
 
         if ($verif->temErros()) {
