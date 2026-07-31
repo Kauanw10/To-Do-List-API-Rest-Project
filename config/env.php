@@ -4,7 +4,7 @@
     define('DB_USER', getenv('DB_USER') ?: 'avnadmin');
     define('DB_PASS', getenv('DB_PASS') ?: '');
     define('DB_PORT', getenv('DB_PORT') ?: '10745');
-    
+    define('SECRET_KEY', getenv('SECRET_KEY') ?: ($_ENV['SECRET_KEY'] ?? $_SERVER['SECRET_KEY']));
     
     define('ENV', getenv('RENDER') ? 'prod' : 'dev');
 
